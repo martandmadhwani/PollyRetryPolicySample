@@ -1,7 +1,7 @@
 # PollyRetryPolicySample
 Apply retry policy using Polly
 
-**Add nuget package 
+** Add nuget package **
 - Microsoft.Extensions.Http.Polly - used version 6.0.2
 - Polly - used version 7.2.3
 
@@ -31,7 +31,7 @@ public class Policies
 
 ## In configure service register Policies
 
-    services.AddSingleton<Policies>();
+** services.AddSingleton<Policies>();**
 
 ## Inject polly policies as dependacy injection
 
