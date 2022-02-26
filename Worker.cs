@@ -1,39 +1,12 @@
-# PollyRetryPolicySample
-Apply retry policy using Polly
-
-**Add nuget package 
-- Microsoft.Extensions.Http.Polly - used version 6.0.2
-- Polly - used version 7.2.3
-
-## Create class Policies for policies.
-
-using Polly;
-using Polly.Retry;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
+using PollySample.interfaces;
 using System;
-using System.Net;
-using System.Net.Http;
-
-public class Policies
-{
-    public readonly AsyncRetryPolicy<HttpResponseMessage> RequestTimeoutPolicy;
-
-    public Policies()
-    {
-        RequestTimeoutPolicy = Policy.HandleResult<HttpResponseMessage>(r => r.StatusCode == HttpStatusCode.NotFound)
-         .Or<Exception>()
-          .WaitAndRetryAsync(3, retryCount => TimeSpan.FromSeconds(10), (result, timeSpan, retryCount, context) =>
-           {
-               Console.WriteLine("retry");
-           });
-
-    }
-}
-
-## In configure service register Policies
-
-    services.AddSingleton<Policies>();
-
-## Inject polly policies as dependacy injection
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace PollySample
 {
