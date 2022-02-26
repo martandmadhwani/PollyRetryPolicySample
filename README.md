@@ -1,5 +1,5 @@
-# PollyRetryPolicySample
-Apply retry policy using Polly
+# Polly Retry Policy Example
+Apply retry policy using Polly for asp.net core
 
 ** Add nuget package **
 - Microsoft.Extensions.Http.Polly - used version 6.0.2
@@ -7,6 +7,7 @@ Apply retry policy using Polly
 
 ## Create class Policies for policies.
 
+```
 using Polly;
 using Polly.Retry;
 using System;
@@ -25,16 +26,17 @@ public class Policies
            {
                Console.WriteLine("retry");
            });
-
     }
 }
+```
 
 ## In configure service register Policies
 
-** services.AddSingleton<Policies>();**
+``` services.AddSingleton<Policies>(); ```
 
 ## Inject polly policies as dependacy injection
 
+```
 namespace PollySample
 {
     public class Worker : BackgroundService
@@ -62,3 +64,4 @@ namespace PollySample
         }
     }
 }
+```
