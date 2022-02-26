@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
-using System.Net.Http.Json;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace PollySample.interfaces
@@ -22,16 +18,14 @@ namespace PollySample.interfaces
             return c;
         });
 
-        public async Task<HttpResponseMessage> GetAsJsonAsync(string url= "/todos/1")
+        public async Task<HttpResponseMessage> GetAsJsonAsync(string url = "/todos/1")
         {
-           
-            var response =  await _httpClient.Value.GetAsync(url);
+
+            var response = await _httpClient.Value.GetAsync(url);
             if (response.IsSuccessStatusCode)
             {
                 var customerJsonString = await response.Content.ReadAsStringAsync();
                 Console.WriteLine(customerJsonString);
-                // Console.WriteLine("Request Message Information:- \n\n" + response.Result.RequestMessage + "\n");
-                //Console.WriteLine("Response Message Header \n\n" + response.Result.Content.Headers + "\n");
             }
             else
             {

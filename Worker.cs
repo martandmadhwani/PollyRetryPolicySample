@@ -1,10 +1,6 @@
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
 using PollySample.interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -27,9 +23,9 @@ namespace PollySample
         {
             while (!stoppingToken.IsCancellationRequested)
             {
+                // actual api is /todos/1 but to get 404 append 1
                 var response = await _policies.RequestTimeoutPolicy.ExecuteAsync(() => _sampleCall.GetAsJsonAsync("/todos1/1"));
-               
-                //_logger.LogInformation("Worker running at: {time}", DateTimeOffset.Now);
+
                 await Task.Delay(1000000, stoppingToken);
             }
         }
